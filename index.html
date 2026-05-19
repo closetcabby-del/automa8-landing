@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automa8 | Automate What You Don't Want To Do</title>
+  <meta name="description" content="If it's something you need to do but don't want to do, there's a good chance we can automate it.">
+  <meta property="og:title" content="Automa8 | Automate What You Don't Want To Do">
+  <meta property="og:description" content="If it's something you need to do but don't want to do, there's a good chance we can automate it.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#0F172A">
+  <meta property="og:image" content="og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #0F172A;
+      color: #FFFFFF;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-color: #0F172A;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 800px;
+      border-radius: 50%;
+      opacity: 0.2;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.4) 0%, rgba(37, 99, 235, 0.1) 40%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      opacity: 0.03;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      text-align: center;
+    }
+
+    /* App Icon */
+    .icon-wrapper {
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: center;
+      opacity: 0;
+      transform: scale(0.8);
+      animation: fadeScaleIn 0.8s ease-out forwards;
+    }
+
+    .icon-container {
+      position: relative;
+      width: 72px;
+      height: 72px;
+    }
+
+    .icon-glow {
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      background: rgba(37, 99, 235, 0.2);
+      filter: blur(20px);
+      animation: pulseGlow 2s ease-in-out infinite;
+    }
+
+    .icon-container img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.3));
+    }
+
+    /* Logo */
+    .logo-wrapper {
+      margin-bottom: 48px;
+      opacity: 0;
+      transform: translateY(-20px);
+      animation: fadeSlideDown 0.8s ease-out 0.1s forwards;
+    }
+
+    .logo-wrapper img {
+      width: 180px;
+      height: auto;
+    }
+
+    /* Headline */
+    .headline {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(28px, 5vw, 56px);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      color: #FFFFFF;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeSlideUp 0.8s ease-out 0.3s forwards;
+    }
+
+    .headline .accent {
+      color: #2563EB;
+    }
+
+    /* Subheadline */
+    .subheadline {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(18px, 3vw, 30px);
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 48px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeSlideUp 0.8s ease-out 0.5s forwards;
+    }
+
+    /* CTA Button */
+    .cta-wrapper {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeSlideUp 0.8s ease-out 0.7s forwards;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background-color: #2563EB;
+      color: #FFFFFF;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(16px, 2vw, 20px);
+      font-weight: 600;
+      padding: 16px 40px;
+      border-radius: 50px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background-color: #1d4ed8;
+      box-shadow: 0 0 30px rgba(37, 99, 235, 0.4);
+      transform: scale(1.02);
+    }
+
+    .cta-button:active {
+      transform: scale(0.98);
+    }
+
+    .cta-button svg {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .cta-button:hover svg {
+      transform: translateX(4px);
+    }
+
+    /* Floating dots */
+    .dot {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .dot-1 {
+      top: 80px;
+      right: 40px;
+      width: 8px;
+      height: 8px;
+      background: rgba(37, 99, 235, 0.4);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .dot-2 {
+      bottom: 128px;
+      left: 64px;
+      width: 12px;
+      height: 12px;
+      background: rgba(37, 99, 235, 0.3);
+      animation: float 5s ease-in-out 1s infinite;
+    }
+
+    .dot-3 {
+      top: 160px;
+      left: 80px;
+      width: 6px;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.2);
+      animation: float 3.5s ease-in-out 0.5s infinite;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      position: relative;
+      z-index: 10;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      background-color: #0F172A;
+    }
+
+    .footer-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .footer-copy {
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 14px;
+    }
+
+    .footer-link {
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 14px;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-link:hover {
+      color: #2563EB;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeSlideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeSlideDown {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @keyframes fadeScaleIn {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 640px) {
+      .hero-content {
+        padding: 60px 20px;
+      }
+
+      .icon-container {
+        width: 60px;
+        height: 60px;
+      }
+
+      .icon-wrapper {
+        margin-bottom: 20px;
+      }
+
+      .logo-wrapper {
+        margin-bottom: 36px;
+      }
+
+      .logo-wrapper img {
+        width: 150px;
+      }
+
+      .headline {
+        margin-bottom: 20px;
+      }
+
+      .subheadline {
+        margin-bottom: 36px;
+      }
+
+      .cta-button {
+        padding: 14px 32px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-grid"></div>
+    <div class="dot dot-1"></div>
+    <div class="dot dot-2"></div>
+    <div class="dot dot-3"></div>
+
+    <div class="hero-content">
+      <div class="icon-wrapper">
+        <div class="icon-container">
+          <div class="icon-glow"></div>
+          <img src="automa8_app_icon.png" alt="Automa8 icon">
+        </div>
+      </div>
+
+      <div class="logo-wrapper">
+        <img src="automa8_white_logo.png" alt="Automa8 - Automation and AI Workflow Solutions">
+      </div>
+
+      <h1 class="headline">
+        If it&rsquo;s something you need to do but don&rsquo;t want to do,
+        <span class="accent">there&rsquo;s a good chance we can automate it.</span>
+      </h1>
+
+      <p class="subheadline">Let&rsquo;s find out.</p>
+
+      <div class="cta-wrapper">
+        <!-- ✏️ CHANGE YOUR BOOKING URL HERE -->
+        <a href="#" class="cta-button" target="_blank" rel="noopener noreferrer">
+          Book Now
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <p class="footer-copy">&copy; 2026 Automa8. All rights reserved.</p>
+      <a href="mailto:hello@automa8.com" class="footer-link">Contact</a>
+    </div>
+  </footer>
+
+</body>
+</html>

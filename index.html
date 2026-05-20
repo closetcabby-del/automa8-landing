@@ -84,7 +84,7 @@
       z-index: 10;
       max-width: 900px;
       margin: 0 auto;
-      padding: 80px 24px;
+      padding: 60px 24px;
       text-align: center;
     }
 
@@ -306,20 +306,24 @@
     /* ===== RESPONSIVE ===== */
     @media (max-width: 640px) {
       .hero-content {
-        padding: 60px 20px;
+        padding: 40px 20px;
       }
 
       .icon-container {
-        width: 60px;
-        height: 60px;
+        width: 56px;
+        height: 56px;
       }
 
       .icon-wrapper {
-        margin-bottom: 20px;
+        margin-bottom: 16px;
+      }
+
+      .icon-glow {
+        filter: blur(12px);
       }
 
       .logo-wrapper {
-        margin-bottom: 36px;
+        margin-bottom: 28px;
       }
 
       .logo-wrapper img {
@@ -327,11 +331,11 @@
       }
 
       .headline {
-        margin-bottom: 20px;
+        margin-bottom: 16px;
       }
 
       .subheadline {
-        margin-bottom: 36px;
+        margin-bottom: 32px;
       }
 
       .cta-button {
@@ -395,8 +399,9 @@
     (function() {
       const canvas = document.getElementById('particles');
       const ctx = canvas.getContext('2d');
-      const PARTICLE_COUNT = 40;
-      const CONNECTION_DISTANCE = 150;
+      const isMobile = window.innerWidth < 640;
+      const PARTICLE_COUNT = isMobile ? 18 : 40;
+      const CONNECTION_DISTANCE = isMobile ? 120 : 150;
       const BLUE = { r: 37, g: 99, b: 235 };
       let particles = [];
 

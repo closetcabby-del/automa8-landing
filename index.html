@@ -88,52 +88,34 @@
       text-align: center;
     }
 
-    /* App Icon */
-    .icon-wrapper {
-      margin-bottom: 24px;
+    /* Logo lockup */
+    .logo-lockup {
+      margin-bottom: 36px;
       display: flex;
       justify-content: center;
-      opacity: 0;
-      transform: scale(0.8);
-      animation: fadeScaleIn 0.8s ease-out forwards;
-    }
-
-    .icon-container {
-      position: relative;
-      width: 72px;
-      height: 72px;
-      animation: iconFloat 4s ease-in-out infinite;
-    }
-
-    .icon-glow {
-      position: absolute;
-      inset: 0;
-      border-radius: 16px;
-      background: rgba(37, 99, 235, 0.2);
-      filter: blur(20px);
-      animation: pulseGlow 2s ease-in-out infinite;
-    }
-
-    .icon-container img {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.3));
-    }
-
-    /* Logo */
-    .logo-wrapper {
-      margin-bottom: 36px;
+      align-items: baseline;
       opacity: 0;
       transform: translateY(-20px);
-      animation: fadeSlideDown 0.8s ease-out 0.1s forwards;
+      animation: fadeSlideDown 0.8s ease-out forwards;
     }
 
-    .logo-wrapper img {
-      width: 180px;
-      height: auto;
+    .logo-text {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(32px, 6vw, 56px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+    }
+
+    .logo-eight {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(32px, 6vw, 56px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #2563EB;
+      display: inline-block;
+      animation: logoFloat 3.5s ease-in-out infinite;
+      filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.4));
     }
 
     /* Headline */
@@ -281,21 +263,9 @@
       50% { transform: translateY(-15px); }
     }
 
-    @keyframes fadeScaleIn {
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    @keyframes pulseGlow {
-      0%, 100% { opacity: 0.6; }
-      50% { opacity: 1; }
-    }
-
-    @keyframes iconFloat {
+    @keyframes logoFloat {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
+      50% { transform: translateY(-6px); }
     }
 
     @keyframes shimmer {
@@ -309,25 +279,8 @@
         padding: 16px 20px;
       }
 
-      .icon-container {
-        width: 52px;
-        height: 52px;
-      }
-
-      .icon-wrapper {
-        margin-bottom: 12px;
-      }
-
-      .icon-glow {
-        filter: blur(10px);
-      }
-
-      .logo-wrapper {
+      .logo-lockup {
         margin-bottom: 24px;
-      }
-
-      .logo-wrapper img {
-        width: 140px;
       }
 
       .headline {
@@ -358,19 +311,12 @@
     <canvas id="particles" class="particle-canvas"></canvas>
 
     <div class="hero-content">
-      <div class="icon-wrapper">
-        <div class="icon-container">
-          <div class="icon-glow"></div>
-          <img src="automa8_app_icon.png?v=2" alt="Automa8 icon">
-        </div>
-      </div>
-
-      <div class="logo-wrapper">
-        <img src="automa8_white_logo.png" alt="Automa8 - Automation and AI Workflow Solutions">
+      <div class="logo-lockup">
+        <span class="logo-text">Automa</span><span class="logo-eight">8</span>
       </div>
 
       <h1 class="headline">
-        If it&rsquo;s something you need to do but don&rsquo;t want to do,
+        If there&rsquo;s something you need to do but don&rsquo;t want to do,
         <span class="accent">there&rsquo;s a good chance we can automate it.</span>
       </h1>
 

@@ -93,7 +93,7 @@
       margin-bottom: 36px;
       display: flex;
       justify-content: center;
-      align-items: baseline;
+      align-items: center;
       opacity: 0;
       transform: translateY(-20px);
       animation: fadeSlideDown 0.8s ease-out forwards;
@@ -107,15 +107,20 @@
       color: #FFFFFF;
     }
 
-    .logo-eight {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: clamp(32px, 6vw, 56px);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: #2563EB;
+    .logo-icon {
       display: inline-block;
+      width: clamp(36px, 5.5vw, 56px);
+      height: clamp(36px, 5.5vw, 56px);
+      margin-left: 2px;
       animation: logoFloat 3.5s ease-in-out infinite;
-      filter: drop-shadow(0 0 20px rgba(37, 99, 235, 0.4));
+      filter: drop-shadow(0 0 15px rgba(37, 99, 235, 0.35));
+    }
+
+    .logo-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
     }
 
     /* Headline */
@@ -312,7 +317,7 @@
 
     <div class="hero-content">
       <div class="logo-lockup">
-        <span class="logo-text">Automa</span><span class="logo-eight">8</span>
+        <span class="logo-text">Automa</span><span class="logo-icon"><img src="automa8_app_icon.png?v=3" alt="8"></span>
       </div>
 
       <h1 class="headline">
